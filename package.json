@@ -1,0 +1,19 @@
+{
+  "name": "react-native-transformable-image",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoaicom/react-native-transformable-image.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoaicom/react-native-transformable-image/issues"
+  },
+  "homepage": "https://github.com/yoaicom/react-native-transformable-image#readme"
+}

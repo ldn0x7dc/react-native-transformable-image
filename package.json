@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/yoaicom/react-native-transformable-image/issues"
   },
-  "homepage": "https://github.com/yoaicom/react-native-transformable-image#readme"
+  "homepage": "https://github.com/yoaicom/react-native-transformable-image#readme",
+  "dependencies": {
+    "react-native-view-transformer": "0.0.9"
+  }
 }

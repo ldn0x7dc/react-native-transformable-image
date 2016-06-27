@@ -59,18 +59,14 @@ export default class App extends Component {
         horizontal={true}
         pagingEnabled={true}>
         <Image
-          pageX={0}
-          pageY={0}
+          disableTransform={true}
           style={{width: width, height: height}}
           source={{uri: 'http://p10.qhimg.com/t019e9cf51692f735be.jpg'}}/>
         <Image
-          pageX={0}
-          pageY={0}
+          disableTransform={true}
           style={{width: width, height: height}}
           source={{uri: 'http://ww2.sinaimg.cn/mw690/714a59a7tw1dxqkkg0cwlj.jpg'}}/>
         <Image
-          pageX={0}
-          pageY={0}
           style={{width: width, height: height}}
           source={{uri: 'http://www.bz55.com/uploads/allimg/150122/139-150122145421.jpg'}}/>
       </ScrollView>

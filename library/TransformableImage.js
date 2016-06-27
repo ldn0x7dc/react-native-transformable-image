@@ -1,11 +1,15 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Image } from 'react-native';
 
 import ViewTransformer from 'react-native-view-transformer';
 
 export default class TransformableImage extends Component {
+
+  static defaultProps = {
+    disableTransform: false
+  }
 
   constructor(props) {
     super(props);
@@ -94,13 +98,11 @@ export default class TransformableImage extends Component {
     return (
       <ViewTransformer
         key={JSON.stringify(this.props.source)} //when image source changes, we should use a different node to avoid reusing previous transform state
-        enableTransform={this.state.imageLoaded} //disable transform until image is loaded
+        enableTransform={!this.props.disableTransform && this.state.imageLoaded} //disable transform until image is loaded
         enableResistance={true}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
-        pageX={this.props.pageX}
-        pageY={this.props.pageY}
         style={{backgroundColor: 'black'}}>
         <Image
           {...this.props}
@@ -133,5 +135,15 @@ export default class TransformableImage extends Component {
       width: width,
       height: height
     });
+    Image.getSize;
   }
+}
+
+TransformableImage.propTypes = {
+  pixels: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
+
+  disableTransform: PropTypes.bool
 }

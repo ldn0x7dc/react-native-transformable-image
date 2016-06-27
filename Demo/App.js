@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
 
 import Image from 'react-native-transformable-image';
@@ -24,6 +25,12 @@ export default class App extends Component {
   }
 
   render() {
+    return this.renderGallery();
+    //return this.renderSingle();
+    //return this.renderScrollView();
+  }
+
+  renderSingle() {
     return (
       <View
         style={{flex: 1, alignItems: 'center'}}>
@@ -40,6 +47,47 @@ export default class App extends Component {
                 onPress={this.changeImage.bind(this, uri2)}>Image 2</Text>
         </View>
       </View>
+    );
+  }
+
+  renderGallery() {
+    return (
+      <ScrollView
+        onLayout={(e) => {
+          console.log('onLayout...' + JSON.stringify(e.nativeEvent.layout))
+        }}
+        horizontal={true}
+        pagingEnabled={true}>
+        <Image
+          pageX={0}
+          pageY={0}
+          style={{width: width, height: height}}
+          source={{uri: 'http://p10.qhimg.com/t019e9cf51692f735be.jpg'}}/>
+        <Image
+          pageX={0}
+          pageY={0}
+          style={{width: width, height: height}}
+          source={{uri: 'http://ww2.sinaimg.cn/mw690/714a59a7tw1dxqkkg0cwlj.jpg'}}/>
+        <Image
+          pageX={0}
+          pageY={0}
+          style={{width: width, height: height}}
+          source={{uri: 'http://www.bz55.com/uploads/allimg/150122/139-150122145421.jpg'}}/>
+      </ScrollView>
+    );
+  }
+
+  renderScrollView() {
+    return (
+      <ScrollView
+        style={{flex: 1}}>
+        <View
+          style={{height: 200}}
+        />
+        <Image
+          style={{width: width, height: height}}
+          source={{uri: 'http://p10.qhimg.com/t019e9cf51692f735be.jpg'}}/>
+      </ScrollView>
     );
   }
 

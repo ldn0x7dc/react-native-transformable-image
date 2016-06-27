@@ -99,6 +99,8 @@ export default class TransformableImage extends Component {
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
+        pageX={this.props.pageX}
+        pageY={this.props.pageY}
         style={{backgroundColor: 'black'}}>
         <Image
           {...this.props}

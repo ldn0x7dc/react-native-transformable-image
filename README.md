@@ -1,8 +1,12 @@
 # react-native-transformable-image
 
-A transformable image component, as the known **PhotoView** or **ImageViewer**, supports gestures like pan, pinch, double tab and fling, is written in **pure JavaScript**, supports **both iOS and Android**.
+A transformable image component, like PhotoView or ImageViewer, supports gestures like pan, pinch, double tab and fling, is written in pure JavaScript, supports both iOS and Android.
 
 ![](Demo/demo.gif)
+
+
+
+Written in pure JS, this component should be one of the most easy to use component among all the zoomable, scrollable PhotoView alike views on react-native. 
 
 ## Install
 
@@ -38,3 +42,8 @@ This prop is **optional** if the image is remote (*like `source={{uri: 'http://r
 
 If your image is local (*like `source={require('...')}`*) or you are using react-native v0.27 and below, you should provide the **pixels** prop, wraping the image's width and height. (*You can ask your API server to provide image pixels info*).
 
+
+
+## Image Gallery
+
+If you are looking for an image gallery component, please refer to [**react-native-gallery**](https://github.com/ldn0x7dc/react-native-transformable-image), which is based on this component.

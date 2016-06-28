@@ -8,6 +8,6 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-native": "^0.28.0",
-    "react-native-transformable-image": "0.0.6"
+    "react-native-transformable-image": "^0.0.9"
   }
 }

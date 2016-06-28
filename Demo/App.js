@@ -25,8 +25,7 @@ export default class App extends Component {
   }
 
   render() {
-    return this.renderGallery();
-    //return this.renderSingle();
+    return this.renderSingle();
     //return this.renderScrollView();
   }
 
@@ -47,29 +46,6 @@ export default class App extends Component {
                 onPress={this.changeImage.bind(this, uri2)}>Image 2</Text>
         </View>
       </View>
-    );
-  }
-
-  renderGallery() {
-    return (
-      <ScrollView
-        onLayout={(e) => {
-          console.log('onLayout...' + JSON.stringify(e.nativeEvent.layout))
-        }}
-        horizontal={true}
-        pagingEnabled={true}>
-        <Image
-          disableTransform={true}
-          style={{width: width, height: height}}
-          source={{uri: 'http://p10.qhimg.com/t019e9cf51692f735be.jpg'}}/>
-        <Image
-          disableTransform={true}
-          style={{width: width, height: height}}
-          source={{uri: 'http://ww2.sinaimg.cn/mw690/714a59a7tw1dxqkkg0cwlj.jpg'}}/>
-        <Image
-          style={{width: width, height: height}}
-          source={{uri: 'http://www.bz55.com/uploads/allimg/150122/139-150122145421.jpg'}}/>
-      </ScrollView>
     );
   }
 

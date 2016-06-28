@@ -46,4 +46,4 @@ If your image is local (*like `source={require('...')}`*) or you are using react
 
 ## Image Gallery
 
-If you are looking for an image gallery component, please refer to [**react-native-gallery**](https://github.com/ldn0x7dc/react-native-transformable-image), which is based on this component.
+If you are looking for an image gallery component, please refer to [**react-native-gallery**](https://github.com/ldn0x7dc/react-native-gallery), which is based on this component.

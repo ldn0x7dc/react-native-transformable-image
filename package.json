@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/yoaicom/react-native-transformable-image#readme",
   "dependencies": {
-    "react-native-view-transformer": "0.0.19"
+    "react-native-view-transformer": "0.0.20"
   }
 }

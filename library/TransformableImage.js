@@ -8,7 +8,9 @@ import ViewTransformer from 'react-native-view-transformer';
 export default class TransformableImage extends Component {
 
   static defaultProps = {
-    disableTransform: false
+    enableTransform: true,
+    enableScale: true,
+    enableTranslate: true
   }
 
   constructor(props) {
@@ -99,7 +101,9 @@ export default class TransformableImage extends Component {
       <ViewTransformer
         ref='ImageTransformer'
         key={JSON.stringify(this.props.source)} //when image source changes, we should use a different node to avoid reusing previous transform state
-        enableTransform={!this.props.disableTransform && this.state.imageLoaded} //disable transform until image is loaded
+        enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
+        enableScale={this.props.enableScale}
+        enableTranslate={this.props.enableTranslate}
         enableResistance={true}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
@@ -149,5 +153,7 @@ TransformableImage.propTypes = {
     height: PropTypes.number,
   }),
 
-  disableTransform: PropTypes.bool
+  enableTransform: PropTypes.bool,
+  enableScale: PropTypes.bool,
+  enableTranslate: PropTypes.bool
 }

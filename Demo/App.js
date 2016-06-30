@@ -11,7 +11,8 @@ import {
 import Image from 'react-native-transformable-image';
 
 const {width, height} = Dimensions.get('window');
-const uri1 = 'http://p10.qhimg.com/t019e9cf51692f735be.jpg';
+
+const uri1 = 'http://rosemarieberger.com/wp-content/uploads/2013/06/game-of-thrones.jpg';
 const uri2 = 'https://raw.githubusercontent.com/yoaicom/resources/master/images/game_of_thrones_2.jpg';
 
 export default class App extends Component {

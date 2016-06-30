@@ -1,6 +1,6 @@
 # react-native-transformable-image
 
-A transformable image component, like PhotoView or ImageViewer, supports gestures like pan, pinch, double tab and fling, is written in pure JavaScript, supports both iOS and Android.
+A pure JavaScript written transformable image component, like PhotoView or ImageViewer, supports gestures like pan, pinch, double tab and fling, works with both iOS and Android.
 
 ![](Demo/demo.gif)
 
@@ -34,13 +34,12 @@ render() {
   }
 ```
 
+You can provide `enableTransform`, `enableScale` and `enableTranslate`  props to control corresponding features.
+
 ### Attention
 
-The **pixels** prop is used to align the edge of the image content with the view's boundry and to determine the max scale. 
-
-This prop is **optional** if the image is remote (*like `source={{uri: 'http://remoteurl'}}`*) **AND** you are using react-native 0.28+. (**Image.getSize**(available since release [v0.28-rc](https://github.com/facebook/react-native/releases/tag/v0.28.0-rc.0)) is used to get pixels info both on iOS and Android when no pixels prop provided.
-
-If your image is local (*like `source={require('...')}`*) or you are using react-native v0.27 and below, you should provide the **pixels** prop, wraping the image's width and height. (*You can ask your API server to provide image pixels info*).
+* If you are using  react-native v0.27 and below, or if the image source is local (`source={require('...')}`), you should provide the **pixels** prop, like `pixels={{width: 3607, height: 2400}}` (ask your API server to provide the pixels info for remote images). This prop is used to align the edge of the image content with the view's boundry and to determine the max scale.
+* By default, the offical iOS Image component will downsample if the image is larger than the view size. `react-native-transformable-image` disables downsampling to keep more image details when zoomed in. This could cause memory issues if your image is too large.
 
 
 

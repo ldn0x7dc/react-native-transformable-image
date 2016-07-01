@@ -11,7 +11,7 @@ export default class TransformableImage extends Component {
     enableTransform: true,
     enableScale: true,
     enableTranslate: true
-  }
+  };
 
   constructor(props) {
     super(props);

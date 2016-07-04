@@ -21,7 +21,9 @@ export default class TransformableImage extends Component {
 
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
-    enableTranslate: PropTypes.bool
+    enableTranslate: PropTypes.bool,
+    onTransformGestureReleased: PropTypes.func,
+    onViewTransformed: PropTypes.func
   };
 
   static defaultProps = {
@@ -89,6 +91,8 @@ export default class TransformableImage extends Component {
         enableScale={this.props.enableScale}
         enableTranslate={this.props.enableTranslate}
         enableResistance={true}
+        onTransformGestureReleased={this.props.onTransformGestureReleased}
+        onViewTransformed={this.props.onViewTransformed}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}

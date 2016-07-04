@@ -36,6 +36,12 @@ render() {
 
 You can provide `enableTransform`, `enableScale` and `enableTranslate`  props to control corresponding features.
 
+#### Other props
+
+* `onTransformGestureReleased` and `onViewTransformed`: 
+
+​	inherited from [react-native-view-transformer](https://github.com/ldn0x7dc/react-native-view-transformer)
+
 ### Attention
 
 * If you are using  react-native v0.27 and below, or if the image source is local (`source={require('...')}`), you should provide the **pixels** prop, like `pixels={{width: 3607, height: 2400}}` (ask your API server to provide the pixels info for remote images). This prop is used to align the edge of the image content with the view's boundry and to determine the max scale.

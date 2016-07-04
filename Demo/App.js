@@ -40,7 +40,8 @@ export default class App extends Component {
           //pixels={{width: 1920, height: 1080}}
         />
 
-        <View style={{flexDirection: 'row', alignSelf: 'stretch', alignItems: 'center', position: 'absolute', left: 0, right: 0, bottom: 0, height: 50, backgroundColor: '#6666'}}>
+        <View
+          style={{flexDirection: 'row', alignSelf: 'stretch', alignItems: 'center', position: 'absolute', left: 0, right: 0, bottom: 0, height: 50, backgroundColor: '#6666'}}>
           <Text style={{fontSize: 16, width: width / 2, textAlign: 'center'}}
                 onPress={this.changeImage.bind(this, uri1)}>Image 1</Text>
           <Text style={{fontSize: 16, width: width / 2, textAlign: 'center'}}

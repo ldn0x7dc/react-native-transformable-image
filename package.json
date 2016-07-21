@@ -2,7 +2,7 @@
   "name": "react-native-transformable-image",
   "version": "0.0.15",
   "description": "",
-  "main": "library/index.js",
+  "main": "library/TransformableImage.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

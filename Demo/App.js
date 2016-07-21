@@ -42,13 +42,11 @@ export default class App extends Component {
         <View
           style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Image
-            style={{width: width - 50, height: height - 100, backgroundColor: 'transparent'}}
+            style={{width: width - 50, height: height - 100, backgroundColor: 'black'}}
             source={{uri: this.state.uri}}
             //pixels={{width: 1920, height: 1080}}
           />
         </View>
-
-
       </Modal>
     );
   }

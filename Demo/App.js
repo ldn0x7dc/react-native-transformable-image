@@ -5,14 +5,16 @@ import {
   Text,
   View,
   Dimensions,
-  ScrollView
+  ScrollView,
+  Modal
 } from 'react-native';
 
 import Image from 'react-native-transformable-image';
 
 const {width, height} = Dimensions.get('window');
 
-const uri1 = 'http://rosemarieberger.com/wp-content/uploads/2013/06/game-of-thrones.jpg';
+//const uri1 = 'http://rosemarieberger.com/wp-content/uploads/2013/06/game-of-thrones.jpg';
+const uri1 = 'http://static.yoaicdn.com/shoppc/images/banner1_0747398.jpg';
 const uri2 = 'https://raw.githubusercontent.com/yoaicom/resources/master/images/game_of_thrones_2.jpg';
 
 export default class App extends Component {
@@ -26,8 +28,29 @@ export default class App extends Component {
   }
 
   render() {
-    return this.renderSingle();
+    //return this.renderSingle();
     //return this.renderScrollView();
+    return this.renderModal();
+  }
+
+  renderModal() {
+    return (
+      <Modal
+        animationType={"none"}
+        transparent={true}
+        visible={true}>
+        <View
+          style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Image
+            style={{width: width - 50, height: height - 100, backgroundColor: 'transparent'}}
+            source={{uri: this.state.uri}}
+            //pixels={{width: 1920, height: 1080}}
+          />
+        </View>
+
+
+      </Modal>
+    );
   }
 
   renderSingle() {

@@ -34,13 +34,15 @@ render() {
   }
 ```
 
-You can provide `enableTransform`, `enableScale` and `enableTranslate`  props to control corresponding features.
+You can provide `enableTransform`, `enableScale`, `enableTranslate` and `enableLimits`  props to control corresponding features.
 
 #### Other props
 
 * `onTransformGestureReleased` and `onViewTransformed`: 
 
 ​	inherited from [react-native-view-transformer](https://github.com/ldn0x7dc/react-native-view-transformer)
+
+* `automaticCoverInitialScale`: When set to `true` makes the Image look like if `resizeMode="cover"`
 
 ### Attention
 

@@ -24,7 +24,8 @@ export default class TransformableImage extends Component {
     enableTranslate: PropTypes.bool,
     onSingleTapConfirmed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
-    onViewTransformed: PropTypes.func
+    onViewTransformed: PropTypes.func,
+    minScale: PropTypes.number
   };
 
   static defaultProps = {
@@ -64,6 +65,7 @@ export default class TransformableImage extends Component {
     let maxScale = 1;
     let contentAspectRatio = undefined;
     let width, height; //pixels
+    const { minScale } = this.props;
 
     if (this.props.pixels) {
       //if provided via props
@@ -79,10 +81,11 @@ export default class TransformableImage extends Component {
       contentAspectRatio = width / height;
       if (this.state.width && this.state.height) {
         maxScale = Math.max(width / this.state.width, height / this.state.height);
-        maxScale = Math.max(1, maxScale);
+        if(minScale){
+            maxScale = Math.max(minScale, maxScale);
+        }
       }
     }
-
 
     return (
       <ViewTransformer

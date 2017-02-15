@@ -83,21 +83,20 @@ export default class TransformableImage extends Component {
       }
     }
 
+    const viewTransformerDelegation = Object.keys(ViewTransformer.propTypes).reduce(
+      (acc, prop) => (this.props[prop] ? { ...acc, [prop]: this.props[prop] } : acc), {}
+    );
 
     return (
       <ViewTransformer
         ref='viewTransformer'
         key={'viewTransformer#' + this.state.keyAccumulator} //when image source changes, we should use a different node to avoid reusing previous transform state
-        enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
-        enableScale={this.props.enableScale}
-        enableTranslate={this.props.enableTranslate}
         enableResistance={true}
-        onTransformGestureReleased={this.props.onTransformGestureReleased}
-        onViewTransformed={this.props.onViewTransformed}
-        onSingleTapConfirmed={this.props.onSingleTapConfirmed}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
+        {...viewTransformerDelegation}
+        enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
         style={this.props.style}>
         <Image
           {...this.props}

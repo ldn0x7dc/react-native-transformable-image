@@ -28,9 +28,9 @@ export default class App extends Component {
   }
 
   render() {
-    //return this.renderSingle();
+    return this.renderSingle();
     //return this.renderScrollView();
-    return this.renderModal();
+    // return this.renderModal();
   }
 
   renderModal() {

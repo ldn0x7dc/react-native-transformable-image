@@ -22,15 +22,35 @@ export default class TransformableImage extends Component {
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
     enableTranslate: PropTypes.bool,
+    /**
+     * Callback after a single tap (includes first and second tap of double-tap)
+     */
+    onSingleTap: PropTypes.func,
+    /**
+     * Callback after a single tap which is not part of a double-tap
+     */
     onSingleTapConfirmed: PropTypes.func,
+    /**
+     * Callback on a double tap (if supplied, it overwrites the default scaling behavior)
+     *
+     * The first two arguments of the callback are the x- and y-coordinates of the
+     * finger while tapping, respectively.
+     */
+    onDoubleTap: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
     onViewTransformed: PropTypes.func
   };
 
   static defaultProps = {
+    pixels: undefined,
     enableTransform: true,
     enableScale: true,
-    enableTranslate: true
+    enableTranslate: true,
+    onSingleTap: undefined,
+    onSingleTapConfirmed: undefined,
+    onDoubleTap: undefined,
+    onTransformGestureReleased: undefined,
+    onViewTransformed: undefined,
   };
 
   constructor(props) {
@@ -94,7 +114,9 @@ export default class TransformableImage extends Component {
         enableResistance={true}
         onTransformGestureReleased={this.props.onTransformGestureReleased}
         onViewTransformed={this.props.onViewTransformed}
+        onSingleTap={this.props.onSingleTap}
         onSingleTapConfirmed={this.props.onSingleTapConfirmed}
+        onDoubleTap={this.props.onDoubleTap}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}

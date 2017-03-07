@@ -22,15 +22,40 @@ export default class TransformableImage extends Component {
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
     enableTranslate: PropTypes.bool,
+    /**
+     * Callback after a single tap (includes first and second tap of double-tap)
+     */
+    onSingleTap: PropTypes.func,
+    /**
+     * Callback after a single tap which is not part of a double-tap
+     */
     onSingleTapConfirmed: PropTypes.func,
+    /**
+     * Callback on a double tap (if supplied, it overwrites the default scaling behavior)
+     *
+     * The first two arguments of the callback are the x- and y-coordinates of the
+     * finger while tapping, respectively.
+     */
+    onDoubleTap: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
-    onViewTransformed: PropTypes.func
+    onViewTransformed: PropTypes.func,
+    /**
+     * specify used Image-Component
+     */
+    imageComponent: PropTypes.func,
   };
 
   static defaultProps = {
+    pixels: undefined,
     enableTransform: true,
     enableScale: true,
-    enableTranslate: true
+    enableTranslate: true,
+    onSingleTap: undefined,
+    onSingleTapConfirmed: undefined,
+    onDoubleTap: undefined,
+    onTransformGestureReleased: undefined,
+    onViewTransformed: undefined,
+    imageComponent: Image,
   };
 
   constructor(props) {
@@ -55,12 +80,14 @@ export default class TransformableImage extends Component {
   componentWillReceiveProps(nextProps) {
     if (!sameSource(this.props.source, nextProps.source)) {
       //image source changed, clear last image's pixels info if any
-      this.setState({pixels: undefined, keyAcumulator: this.state.keyAcumulator + 1})
+      this.setState({ pixels: undefined, keyAcumulator: this.state.keyAcumulator + 1 })
       this.getImageSize(nextProps.source);
     }
   }
 
   render() {
+    // jsx components must be uppercase
+    const { imageComponent: ImageComponent } = this.props;
     let maxScale = 1;
     let contentAspectRatio = undefined;
     let width, height; //pixels
@@ -94,18 +121,25 @@ export default class TransformableImage extends Component {
         enableResistance={true}
         onTransformGestureReleased={this.props.onTransformGestureReleased}
         onViewTransformed={this.props.onViewTransformed}
+        onSingleTap={this.props.onSingleTap}
         onSingleTapConfirmed={this.props.onSingleTapConfirmed}
+        onDoubleTap={this.props.onDoubleTap}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
-        style={this.props.style}>
-        <Image
+        style={this.props.style} >
+        <ImageComponent
           {...this.props}
-          style={[this.props.style, {backgroundColor: 'transparent'}]}
+          style={[this.props.style, { backgroundColor: 'transparent' }]}
           resizeMode={'contain'}
           onLoadStart={this.onLoadStart.bind(this)}
           onLoad={this.onLoad.bind(this)}
-          capInsets={{left: 0.1, top: 0.1, right: 0.1, bottom: 0.1}} //on iOS, use capInsets to avoid image downsampling
+          capInsets={{
+            left: 0.1,
+            top: 0.1,
+            right: 0.1,
+            bottom: 0.1
+          }} //on iOS, use capInsets to avoid image downsampling
         />
       </ViewTransformer>
     );
@@ -126,7 +160,7 @@ export default class TransformableImage extends Component {
   }
 
   onLayout(e) {
-    let {width, height} = e.nativeEvent.layout;
+    let { width, height } = e.nativeEvent.layout;
     if (this.state.width !== width || this.state.height !== height) {
       this.setState({
         width: width,
@@ -136,21 +170,22 @@ export default class TransformableImage extends Component {
   }
 
   getImageSize(source) {
-    if(!source) return;
+    if (!source) return;
+    const { imageComponent: ImageComponent } = this.props;
 
     DEV && console.log('getImageSize...' + JSON.stringify(source));
 
-    if (typeof Image.getSize === 'function') {
+    if (typeof ImageComponent.getSize === 'function') {
       if (source && source.uri) {
-        Image.getSize(
+        ImageComponent.getSize(
           source.uri,
           (width, height) => {
             DEV && console.log('getImageSize...width=' + width + ', height=' + height);
             if (width && height) {
-              if(this.state.pixels && this.state.pixels.width === width && this.state.pixels.height === height) {
+              if (this.state.pixels && this.state.pixels.width === width && this.state.pixels.height === height) {
                 //no need to update state
               } else {
-                this.setState({pixels: {width, height}});
+                this.setState({ pixels: { width, height } });
               }
             }
           },

@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/ldn0x7dc/react-native-transformable-image.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "ldn0x7dc",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ldn0x7dc/react-native-transformable-image/issues"
   },

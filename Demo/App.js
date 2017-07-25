@@ -44,6 +44,7 @@ export default class App extends Component {
           <Image
             style={{width: width - 50, height: height - 100, backgroundColor: 'black'}}
             source={{uri: this.state.uri}}
+            showLoading={true} //show loading
             //pixels={{width: 1920, height: 1080}}
           />
         </View>
@@ -81,7 +82,9 @@ export default class App extends Component {
         />
         <Image
           style={{width: width, height: height}}
-          source={{uri: 'http://p10.qhimg.com/t019e9cf51692f735be.jpg'}}/>
+          source={{uri: 'http://p10.qhimg.com/t019e9cf51692f735be.jpg'}}
+        />
+
       </ScrollView>
     );
   }

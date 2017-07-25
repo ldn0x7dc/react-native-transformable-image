@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { Image } from 'react-native';
+import { Image, ActivityIndicator,View } from 'react-native';
 
 import ViewTransformer from 'react-native-view-transformer';
 
@@ -24,13 +24,15 @@ export default class TransformableImage extends Component {
     enableTranslate: PropTypes.bool,
     onSingleTapConfirmed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
-    onViewTransformed: PropTypes.func
+    onViewTransformed: PropTypes.func,
+      showLoading:PropTypes.bool
   };
 
   static defaultProps = {
     enableTransform: true,
     enableScale: true,
-    enableTranslate: true
+    enableTranslate: true,
+      showLoading:false
   };
 
   constructor(props) {
@@ -99,23 +101,34 @@ export default class TransformableImage extends Component {
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
         style={this.props.style}>
-        <Image
-          {...this.props}
-          style={[this.props.style, {backgroundColor: 'transparent'}]}
-          resizeMode={'contain'}
-          onLoadStart={this.onLoadStart.bind(this)}
-          onLoad={this.onLoad.bind(this)}
-          capInsets={{left: 0.1, top: 0.1, right: 0.1, bottom: 0.1}} //on iOS, use capInsets to avoid image downsampling
-        />
+          <Image
+              {...this.props}
+              style={[this.props.style, {backgroundColor: 'transparent'}]}
+              resizeMode={'contain'}
+              onLoadStart={this.onLoadStart.bind(this)}
+              onLoad={this.onLoad.bind(this)}
+              capInsets={{left: 0.1, top: 0.1, right: 0.1, bottom: 0.1}} //on iOS, use capInsets to avoid image downsampling
+          >
+              {/* loading activityIndicator (android & ios) before image onLoaded */}
+              {this.props.showLoading && !this.state.imageLoaded &&
+              <View style={{position: 'absolute',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,}}>
+                  <ActivityIndicator animating={!this.state.imageLoaded} size={"large"}/>
+              </View>
+              }
+          </Image>
       </ViewTransformer>
     );
   }
 
   onLoadStart(e) {
     this.props.onLoadStart && this.props.onLoadStart(e);
-    this.setState({
-      imageLoaded: false
-    });
+    this.state.imageLoaded = false  //solve (react-native 0.44.3 android) multiple update views
   }
 
   onLoad(e) {

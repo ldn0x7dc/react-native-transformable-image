@@ -1,6 +1,8 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import { Image } from 'react-native';
 
 import ViewTransformer from 'react-native-view-transformer';

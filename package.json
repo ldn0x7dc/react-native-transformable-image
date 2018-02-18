@@ -1,6 +1,6 @@
 {
   "name": "react-native-transformable-image",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "",
   "main": "library/TransformableImage.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ldn0x7dc/react-native-transformable-image#readme",
   "dependencies": {
-    "react-native-view-transformer": "0.0.28"
+    "prop-types": "^15.6.0",
+    "react-native-view-transformer": "github:borgand/react-native-view-transformer#e73c9e5"
   }
 }

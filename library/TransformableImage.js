@@ -1,7 +1,8 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Image } from 'react-native';
+import PropTypes from 'prop-types';
 
 import ViewTransformer from 'react-native-view-transformer';
 
@@ -19,6 +20,7 @@ export default class TransformableImage extends Component {
       height: PropTypes.number,
     }),
 
+    maxScale: PropTypes.number,
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
     enableTranslate: PropTypes.bool,
@@ -77,7 +79,10 @@ export default class TransformableImage extends Component {
 
     if (width && height) {
       contentAspectRatio = width / height;
-      if (this.state.width && this.state.height) {
+      if (this.props.maxScale) {
+        maxScale = this.props.maxScale;
+      }
+      else if (this.state.width && this.state.height) {
         maxScale = Math.max(width / this.state.width, height / this.state.height);
         maxScale = Math.max(1, maxScale);
       }

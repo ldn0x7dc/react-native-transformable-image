@@ -1,9 +1,10 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 
-import ViewTransformer from 'react-native-view-transformer';
+import ViewTransformer from 'react-native-view-transformer-next';
 
 let DEV = false;
 
@@ -83,10 +84,9 @@ export default class TransformableImage extends Component {
       }
     }
 
-
     return (
       <ViewTransformer
-        ref='viewTransformer'
+        ref={ref => (this.viewTransformer = ref)}
         key={'viewTransformer#' + this.state.keyAccumulator} //when image source changes, we should use a different node to avoid reusing previous transform state
         enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
         enableScale={this.props.enableScale}
@@ -98,14 +98,15 @@ export default class TransformableImage extends Component {
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
-        style={this.props.style}>
+        style={this.props.style}
+      >
         <Image
           {...this.props}
-          style={[this.props.style, {backgroundColor: 'transparent'}]}
+          style={[this.props.style, { backgroundColor: 'transparent' }]}
           resizeMode={'contain'}
           onLoadStart={this.onLoadStart.bind(this)}
           onLoad={this.onLoad.bind(this)}
-          capInsets={{left: 0.1, top: 0.1, right: 0.1, bottom: 0.1}} //on iOS, use capInsets to avoid image downsampling
+          capInsets={{ left: 0.1, top: 0.1, right: 0.1, bottom: 0.1 }} //on iOS, use capInsets to avoid image downsampling
         />
       </ViewTransformer>
     );
@@ -154,9 +155,15 @@ export default class TransformableImage extends Component {
               }
             }
           },
-          (error) => {
-            console.error('getImageSize...error=' + JSON.stringify(error) + ', source=' + JSON.stringify(source));
-          })
+          error => {
+            console.error(
+              'getImageSize...error=' +
+                JSON.stringify(error) +
+                ', source=' +
+                JSON.stringify(source)
+            )
+          }
+        )
       } else {
         console.warn('getImageSize...please provide pixels prop for local images');
       }

@@ -1,4 +1,4 @@
-# react-native-transformable-image
+# react-native-transformable-image--the amazing project
 
 A pure JavaScript written transformable image component, like PhotoView or ImageViewer, supports gestures like pan, pinch, double tab and fling, works with both iOS and Android.
 
